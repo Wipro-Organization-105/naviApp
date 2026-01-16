@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">naviApp</string>
+    <string name="hello_text">Hello AAOS from naviApp 👋</string>
+</resources>

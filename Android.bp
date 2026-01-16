@@ -1,0 +1,16 @@
+android_app {
+    name: "naviApp",
+    // Compile from source
+    srcs: [
+        "src/main/java/**/*.kt",
+        "src/main/java/**/*.java",
+    ],
+    manifest: "src/main/AndroidManifest.xml",
+    resource_dirs: ["src/main/res"],
+
+    // Build settings
+    certificate: "platform",        // platform-signed system app
+    privileged: false,              // set true if you need /system/priv-app
+    sdk_version: "current",         // or "system_current" for system APIs only
+    // Minify/opt settings can be added if needed
+}
