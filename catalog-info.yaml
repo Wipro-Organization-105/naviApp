@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: "HVAC-Application"
-  description: "HVAC Android Application"
+  name: "Navi-Application"
+  description: "Navigation Android Application"
   links:
     - url: https://github.com/codespaces/symmetrical-space-carnival-wjg54p5w59fvg4r?editor=web
       title: Codespaces(Web)
@@ -10,7 +10,7 @@ metadata:
   annotations:
     github.com: github.com
     #github.com: Wipro-Organization-105/first-strike
-    github.com/project-slug: 'Wipro-Organization-105/HvacApplication'
+    github.com/project-slug: 'Wipro-Organization-105/naviApp'
     backstage.io/techdocs-ref: dir:.
 spec:
   type: service
