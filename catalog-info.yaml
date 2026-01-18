@@ -1,0 +1,37 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "HVAC-Application"
+  description: "HVAC Android Application"
+  links:
+    - url: https://github.com/codespaces/symmetrical-space-carnival-wjg54p5w59fvg4r?editor=web
+      title: Codespaces(Web)
+      icon: dashboard
+  annotations:
+    github.com: github.com
+    #github.com: Wipro-Organization-105/first-strike
+    github.com/project-slug: 'Wipro-Organization-105/HvacApplication'
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: service
+  lifecycle: experimental
+  owner: guests # Matches the Group name below
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: sshashwat # MUST match your GitHub username exactly
+spec:
+  profile:
+    displayName: Shashwat
+  memberOf: [guests]
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: guests
+spec:
+  type: team
+  children: []
