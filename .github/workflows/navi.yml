@@ -1,0 +1,81 @@
+name: Android CI navi
+
+on:
+  # push:
+  #   branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+    - name: Acquire Lock or wait for the build
+      run: |
+        if [[ ! -f ~/build-lock ]]
+        then
+            cat /dev/null > ~/build-lock
+        fi
+        toLoop='yes'
+        while [[ "$toLoop" == 'yes' ]]
+        do
+        if [[ ! -z $(cat ~/build-lock) ]]
+        then
+            echo "Build Locked, waiting for 30 seconds of minutes"
+            echo "to loop ? $toLoop"
+            sleep 30
+        else
+            echo "Locking"
+            echo "Locked" >~/build-lock
+            toLoop='no'
+        fi
+        done
+    - name: Build The APK and create a IMG
+      run: |
+        echo "going to the build directory"
+        cd /home/ubuntu/android-automotive/
+        echo "Setting up mk file"
+        cp device/generic/car/common/module_NaviApplication device/generic/car/common/car.mk
+        echo "Setting up the environment"
+        source build/envsetup.sh
+        echo "Select the aosp image"
+        lunch aosp_car_x86_64-userdebug
+        echo "Build apk module"
+        build/soong/soong_ui.bash --make-mode -j$(nproc) HvacApplication
+        echo "check if build succeeded"
+        if [[ $? -gt 0 ]]
+        then
+            echo "remove bootstrap since build failed"
+            rm -rf out/soong/.bootstrap out/soong/.intermediates
+            echo "Rebuild the module"
+            build/soong/soong_ui.bash --make-mode -j$(nproc) HvacApplication
+        fi
+        echo "Check if apk is created"
+        ls out/target/product/generic_car_x86_64/system/app/NaviApplication/NaviApplication.apk
+        echo "Building Android image with the generated APK"
+        m snod
+        echo "Build complete"
+        # ---------------------
+    # - name: Build with Gradle
+    #   run: |
+    - name: Upload to JFrog
+      env: 
+        # URL: "${{ secrets.JF_URL }}/artifactory/generic-local/${{ github.repository }}/${{ github.ref_name }}/artifact.zip"
+        # URL: "http://13.201.132.114:8082/artifactory/generic-local/Wipro-Organization-105/codespace-demo/system.img"
+        URL: "http://3.108.251.3:8082/artifactory/generic-local/Wipro-Organization-105/codespace-demo/system.img"
+      run: |
+        echo "Uploading to: ${URL}"
+          
+        # curl -sSf -v \
+        #   -H "Authorization: Bearer ${{ secrets.JF_ACCESS_TOKEN }}" \
+        #   -T /home/ubuntu/android-automotive/out/target/product/generic_car_x86_64/system.img \
+        #   "${URL}"
+         # curl -sSf -v \
+         # -H "Authorization: Bearer cmVmdGtuOjAxOjE4MDAwOTkwNTA6OHNjSGdLTDhLR2J6N0xRMExCajM3dmxNU3k0" -T /home/ubuntu/android-automotive/out/target/product/generic_car_x86_64/system.img "http://13.201.132.114:8082/artifactory/generic-local/Wipro-Organization-105/codespace-demo/"
+        
+        curl -uadmin:cmVmdGtuOjAxOjE4MDAwOTkwNTA6OHNjSGdLTDhLR2J6N0xRMExCajM3dmxNU3k0 \
+        -T /home/ubuntu/android-automotive/out/target/product/generic_car_x86_64/system.img \
+        "${URL}"
+    - name: Release the lock
+      run: cat /dev/null > ~/build-lock
