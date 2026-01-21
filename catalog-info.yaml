@@ -21,23 +21,24 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: User
 metadata:
+  name: dipankar-maitra-arch
+  namespace: default
+spec:
+  profile:
+    displayName: Dipankar
+  memberOf: [Wipro-Group-A, Wipro-Group-B, Wipro-Admins]
+  
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
   name: Thamizhanban-wipro
   namespace: default
 spec:
   profile:
     displayName: Thami
   memberOf: [Wipro-Group-A]
----
-apiVersion: backstage.io/v1alpha1
-kind: User
-metadata:
-  name: dipankar-maitra-arch
-  namespace: default
-spec:
-  profile:
-    displayName: Dipankar
-  memberOf: [Wipro-Group-A]
-  
+
 ---
 apiVersion: backstage.io/v1alpha1
 kind: User
@@ -47,7 +48,7 @@ metadata:
 spec:
   profile:
     displayName: Rupesh
-  memberOf: [Wipro-Group-A]
+  memberOf: [Wipro-Group-A, Wipro-Group-B, Wipro-Admins]
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -58,7 +59,7 @@ metadata:
 spec:
   profile:
     displayName: Yuvraj
-  memberOf: [Wipro-Group-A]
+  memberOf: [Wipro-Group-B]
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -69,7 +70,7 @@ metadata:
 spec:
   profile:
     displayName: Kamlesh
-  memberOf: [Wipro-Group-A]
+  memberOf: [Wipro-Group-B]
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -80,7 +81,7 @@ metadata:
 spec:
   profile:
     displayName: Amit
-  memberOf: [Wipro-Group-A]
+  memberOf: [Wipro-Group-A, Wipro-Group-B, Wipro-Admins]
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -91,7 +92,7 @@ metadata:
 spec:
   profile:
     displayName: Satyakam
-  memberOf: [Wipro-Group-A]
+  memberOf: [Wipro-Group-A, Wipro-Group-B, Wipro-Admins]
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -109,6 +110,24 @@ apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
   name: Wipro-Group-A
+spec:
+  type: team
+  children: []
+  
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: Wipro-Group-B
+spec:
+  type: team
+  children: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: Wipro-Admins
 spec:
   type: team
   children: []
