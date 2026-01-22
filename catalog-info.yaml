@@ -4,9 +4,12 @@ metadata:
   name: "Navi-Application"
   description: "Navigation Android Application"
   links:
-    - url: https://github.com/codespaces/symmetrical-space-carnival-wjg54p5w59fvg4r?editor=web
-      title: Codespaces(Web)
+    - url: http://15.207.101.86/
+      title: Grafana Dashboard
       icon: dashboard
+    - url: http://3.108.251.3:8082/
+      title: Jfrog Artifactory
+      icon: star
   annotations:
     github.com: github.com
     #github.com: Wipro-Organization-105/first-strike
