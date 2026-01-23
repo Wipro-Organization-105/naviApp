@@ -17,6 +17,8 @@ metadata:
     github.com/project-slug: Wipro-Organization-105/naviApp
     github.com/workflows: Wipro-Organization-105/naviApp
     backstage.io/techdocs-ref: dir:.
+    compliance-status: "APPROVED"
+    license-type: "FOSS"
 spec:
   type: service
   lifecycle: experimental
