@@ -19,6 +19,7 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     compliance-status: "APPROVED"
     license-type: "FOSS"
+    fossa.io/project-name: naviApp
 spec:
   type: service
   lifecycle: experimental
