@@ -115,6 +115,17 @@ spec:
 
 ---
 apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: wipPratik
+  namespace: default
+spec:
+  profile:
+    displayName: Pratik
+  memberOf: [Wipro-Group-A]
+  
+---
+apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
   name: Wipro-Group-A
