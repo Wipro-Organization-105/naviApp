@@ -117,11 +117,11 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: User
 metadata:
-  name: wipPratik
+  name: sushmaPatthipati
   namespace: default
 spec:
   profile:
-    displayName: Pratik
+    displayName: Sushma
   memberOf: [Wipro-Group-A]
   
 ---
