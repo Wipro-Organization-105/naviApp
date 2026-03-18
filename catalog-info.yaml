@@ -111,7 +111,7 @@ metadata:
 spec:
   profile:
     displayName: Pratik
-  memberOf: [Wipro-Group-A, Wipro-Admins]
+  memberOf: [Wipro-Group-A]
 
 ---
 apiVersion: backstage.io/v1alpha1
